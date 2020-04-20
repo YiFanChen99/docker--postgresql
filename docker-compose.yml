@@ -1,0 +1,18 @@
+version: "3"
+services:
+  node:
+    image: "postgres:11"
+    volumes:
+      - "./pgdata:/var/lib/postgresql/data"
+      - "./share:/share"
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "db_name"
+    command:
+      - "postgres"
+      - "-c"
+      - "config_file=/share/postgresql.conf"
+    ports:
+      - "5433:5432"
+    restart: "always"
